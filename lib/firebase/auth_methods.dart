@@ -15,7 +15,7 @@ class Authmethods {
     required String password,
     required String fName,
     required String lName,
-    required Uint8List file,
+    required Uint8List? file,
   }) async {
     String res = 'Something went wrong';
     try {
@@ -26,6 +26,8 @@ class Authmethods {
           file != null) {
         UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
+        ;
+
         String urlOfImg =
             await SotrageMethods().uploadImage('profile', file, false);
 
@@ -39,7 +41,11 @@ class Authmethods {
 
         res = 'success';
       }
+    } on FirebaseAuthException catch (e) {
+      print("Its working 1111111111111111111");
+      res = e.code;
     } catch (e) {
+      print("Its working 1111111111111111111");
       res = e.toString();
     }
 

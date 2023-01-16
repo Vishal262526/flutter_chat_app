@@ -23,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _password = TextEditingController();
 
   Uint8List? _image;
+  bool isloading = false;
 
   void selectimage() async {
     final image = await pickImage(ImageSource.gallery);
@@ -112,16 +113,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             Button(
                 color: kWhite,
-                label: 'Register Now',
+                label: isloading
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : const Text(
+                        'REGUSTER NOW',
+                        style: kButtonLabel,
+                      ),
                 onPress: () async {
+                  setState(() {
+                    isloading = true;
+                  });
                   final Authmethods auth = Authmethods();
                   final user = await auth.SignupUser(
                       email: _email.text,
                       password: _password.text,
                       fName: _fName.text,
                       lName: _lName.text,
-                      file: _image!);
-                  print(user);
+                      file: _image);
+                  if (user != 'success') {
+                    setState(() {
+                      isloading = false;
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: kPrimaryColor,
+                      content: Text(user),
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      backgroundColor: kPrimaryColor,
+                      content: Text('User Successfully SignUp'),
+                    ));
+                  }
+                  setState(() {
+                    isloading = false;
+                  });
                 })
           ],
         ),

@@ -11,6 +11,12 @@ const Color kPrimaryColorMidLight = Color(0xFFD09CFA);
 const Color kPrimaryColorVeryLight = Color(0xFFF3CCFF);
 
 // Text Stykes
+const TextStyle kButtonLabel = TextStyle(
+  color: Colors.white,
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+);
+
 const TextStyle kInputPlaceholderTextStyle = TextStyle(
   fontSize: 18,
   color: Color(0xFFD09CFA),

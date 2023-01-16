@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
   const Button(
       {super.key, required this.label, this.color, required this.onPress});
-  final String label;
+  final Widget label;
   final Color? color;
   final VoidCallback onPress;
   @override
@@ -18,14 +18,7 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              color: color ?? Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          child: label,
         ),
       ),
     );

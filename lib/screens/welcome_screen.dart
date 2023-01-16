@@ -46,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                 color: Color(0xFFD09CFA),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 77,
             ),
             Button(
@@ -54,7 +54,10 @@ class WelcomeScreen extends StatelessWidget {
               onPress: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },
-              label: 'Login Now',
+              label: const Text(
+                "LOGIN",
+                style: kButtonLabel,
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -64,7 +67,10 @@ class WelcomeScreen extends StatelessWidget {
               onPress: () {
                 Navigator.pushNamed(context, RegisterScreen.id);
               },
-              label: 'Register Now',
+              label: const Text(
+                'Register Now',
+                style: kButtonLabel,
+              ),
             ),
           ],
         ),

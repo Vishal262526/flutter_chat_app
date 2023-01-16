@@ -83,7 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Button(
                   color: kWhite,
-                  label: 'Log In',
+                  label: const Text(
+                    'LOG IN',
+                    style: kButtonLabel,
+                  ),
                   onPress: () {
                     print(_email.text);
                     print(_password.text);
